@@ -21,11 +21,16 @@
         <input type="submit" class="btn btn-info" value="HOME">
         </form>
         </div>
-       
+        &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;&nbsp;  &nbsp;  &nbsp;
+      
+        <div> 
+          
+          <h4> Welcome:<b> {{ Auth::user()->name }}</b></h4></div>
         
         
         </ul>
         </div>
+     
   </nav>
 </header>
  <!--end top header-->

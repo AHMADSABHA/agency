@@ -11,7 +11,7 @@ class projectsController extends Controller
 {
     public function index()
     {
-        $projects = latestwork::all();
+        $projects = latestwork::paginate(2);
         
         return view('dashboard.pages.projects.list')->with('projects', $projects);
     }

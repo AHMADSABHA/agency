@@ -25,13 +25,25 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="container-fluid  " style="background-color: white">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <center><i class='fas fa-search' style='font-size:16px'></i></center>
+                                </div>
+                              <div class="col-lg-8" > 
+                                    <input class="form-control" id="myInput"  type="text" placeholder="Type here to search" style=" width:60% ">
+                                </div>
+                            </div>
+                           
+                           
+                        </div>
                         <div class="card">
                             <div class="card-header">
                                 <a href="{{ route('services.create.view') }}" class="btn btn-dark"><i class="bi bi-person-plus-fill"> Add New</i></a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-bordered" style="width: 85%">
+                                <table class="table table-bordered" style="width: 85%"  >
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
@@ -41,10 +53,8 @@
                                             <th style="width: 40px">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach ($services as $item )
-                                            
-                                        
+                                    <tbody id="myTable" >
+                                        @foreach ($services as $item ) 
                                         <tr>
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->icon }}</td>
@@ -52,14 +62,22 @@
                                             <td>{{ $item->list }}</td>
                                             <td>
                                                 <a href="{{ route('services.edit.view', ['id' => $item->id]) }}"
-                                                    class="btn btn-outline-warning btn-xs"><i class="bi bi-person-dash-fill"></i></a>
+                                                    class="btn btn-outline-warning btn-xs "><i class="bi bi-person-dash-fill"></i></a>
                                                 <br />
-                                                <form action="{{ route('services.delete', ['id' => $item->id]) }}" method="POST">
+                                                <form action="{{ route('services.delete', ['id' => $item->id]) }}" method="POST" class="delete"   >
                                                     @csrf
                                                     @method('DELETE')
+                                                   
                                                     <button type="submit"
-                                                        class="btn btn-outline-danger btn-xs"><i class="bi bi-person-x-fill"></i></button>
+                                                        class="btn btn-outline-danger btn-xs "><i class="bi bi-person-x-fill"></i></button>
+                                                                                              
+                                                        
+
                                                 </form>
+
+
+                                                
+
                                             </td>
                                         </tr>
                                         @endforeach
@@ -69,11 +87,7 @@
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
                                 <ul class="pagination pagination-sm m-0 float-right">
-                                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                                    {{ $services->links('pagination::bootstrap-4') }} 
                                 </ul>
                             </div>
                         </div>
@@ -85,6 +99,54 @@
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
         </section>
+        
+       
         <!-- /.content -->
     </div>
 @endsection
+@section('js')
+@if (session('done')=='ok')
+<script>
+Swal.fire(
+    'Deleted!',
+    'Your service has been deleted.',
+    'success'
+  )
+</script>
+@endif
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+                                                   
+    $('.delete').submit(function(e){
+        e.preventDefault();
+        Swal.fire({
+     title: 'Are you sure?',
+     text: "You won't be able to revert this!",
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Yes, delete it! '
+   }).then((result) => {
+     if (result.value) {
+      this.submit();
+     }
+   });
+});
+</script> 
+<script type="text/javascript" >
+    $(document).ready
+</script> 
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#myInput").on("keyup",function(){
+var value= $(this).val().toLowerCase();
+$("#myTable tr").filter(function(){
+$(this).toggle($(this).text().toLowerCase().indexOf(
+    value
+)>-1);
+});
+        });
+    });
+    </script>
+@endsection 

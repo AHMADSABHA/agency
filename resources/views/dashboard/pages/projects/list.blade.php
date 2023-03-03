@@ -90,7 +90,11 @@
                                 </table>
                             </div>
                             <!-- /.card-body -->
-                           
+                            <div class="card-footer clearfix">
+                                <ul class="pagination pagination-sm m-0 float-right">
+                                    {{ $projects->links('pagination::bootstrap-4') }} 
+                                </ul>
+                            </div>
                         </div>
                         <!-- /.card -->
                     </div>

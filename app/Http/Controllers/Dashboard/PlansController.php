@@ -10,7 +10,7 @@ class PlansController extends Controller
 {
     public function index()
     {
-        $plans = plan::all();
+        $plans = plan::paginate(2);
         
         return view('dashboard.pages.plans.list')->with('plans', $plans);
     }

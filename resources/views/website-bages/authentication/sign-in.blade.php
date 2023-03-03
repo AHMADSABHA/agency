@@ -19,7 +19,42 @@
 
   <title>LOGIN PAGE</title>
 </head>
+<style>
+  .captcha{
+width:100%;
+display: flex;
+color:black;
+background-color: yellow;
+text-decoration: line-through;
+padding: 6px 7px 6px 7px ;
+position: relative;
+text-align: center;
+font-weight: bold;
+font-style: italic;
+margin-top:10px;
+letter-spacing: 5px;
+border-radius: 2px;
+  }
+  .captcha .texty{
+    transform: rotate(12deg);
+    transform-style: preserve-3d;
+    text-shadow: 0px 0px 2px #b1b1b1;
+    padding: 2px 2px 2px 2px ;
+    border-radius: 15px;
 
+  }
+</style>
+@php
+$sub='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $rand=substr(str_shuffle($sub),0,7);
+  if(isset($_POST['submit'])){
+    $captcha=$_POST['captchaconf'];
+$captchaval=$_POST['captchaval'];
+if($captchaval!=$captcha){
+    echo "<script>alert('error in validation')</script>";}
+  }
+  else{};
+@endphp
 <body class="bg-login">
 
   <!--start wrapper-->
@@ -71,6 +106,16 @@
                               <input name="password" type="password" class="form-control radius-30 ps-5" id="inputChoosePassword" placeholder="Enter Password">
                             </div>
                           </div>
+                          <div class="col-md-6">
+                            <label for="inputChoosePassword" class="form-label">Code Captcha</label>
+                            <div class="ms-auto position-relative">
+                              <input name="captchaconf" type="text" class="form-control radius-30 ps-5" id="input_captchaconf" placeholder="Enter Captcha ">
+                            </div>
+                          </div>
+                          <div class=col-md-6>
+                            <div class="ms-auto position-relative">
+                          <div class="captcha" name="captcha"><span class="texty"><?php echo $rand;?></span></div></div></div>
+                          <input name="captchaval" type="hidden" class="form-control radius-30 ps-5" id="input_captchaval" value="<?php echo $rand;?>" >
                           <div class="col-6">
                             {{-- <div class="form-check form-switch">
                               <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">

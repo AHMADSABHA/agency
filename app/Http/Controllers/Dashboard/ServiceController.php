@@ -5,13 +5,19 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\services;
 use Illuminate\Http\Request;
-
+//use RealRashid\SweetAlert\Facades\Alert;
+USE RealRashid\SweetAlert\Facades\Alert;
 class ServiceController extends Controller
 {
+    public $delete_id;
+    public function deleteConfirmation($id){
+$this->delete_id= $id;
+$this->dispatchBrowserEvent('show-delete');
+    }
     public function index()
     {
-        $services = services::all();
-        
+        $services = services::paginate(2);
+       
         return view('dashboard.pages.services.list')->with('services', $services);
     }
 
@@ -24,10 +30,11 @@ class ServiceController extends Controller
     {
         if ($request->method() == 'POST') {
         $request->validate([
-            'icon' => ['required','mimes:png,jpg,jpeg'],
+            'icon' => ['required'],
             'title' => ['required', 'max:500'],
             'list' => ['required'],
         ]);
+       Alert::toast('ADDED','success');
         $requestdata=$request->all();
         services::create($requestdata);
     }
@@ -73,15 +80,16 @@ class ServiceController extends Controller
 
     public function delete(Request $request, $id)
     {
+        
         $service = services::find($id);
 
         if (!$service) {
             abort(404);
         }
-
+        
         $service->delete();
-
-        return redirect()->route('services.list.view');
+       
+        return redirect()->route('services.list.view')->with('done','ok');
 
         // Here we will write our database logic
     }

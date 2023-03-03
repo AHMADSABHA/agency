@@ -8,6 +8,7 @@ use App\Models\agencystatics;
 use App\Models\feature;
 use App\Models\get_in_touch;
 use App\Models\how_we_are;
+use App\Models\icon;
 use App\Models\process;
 use App\Models\Whatwedo;
 use App\Models\working_module;
@@ -93,9 +94,9 @@ class SectionController extends Controller
     public function processe(Request $request)
     {
         if ($request->method() == 'POST') {
-
+           
             $request->validate([
-                'icon' => ['required', 'image', 'mimes:jpg,jpeg,png'],
+                'icon' => ['required'],
                 'title' => ['required', 'max:20'],
                 'subtitle' => ['required', 'max:20'],
             ]);
@@ -107,8 +108,8 @@ class SectionController extends Controller
             process::create($requestdata);
 
         }
-
-        return view('dashboard.pages.section.processe.form')
+        $icons=icon::all();
+        return view('dashboard.pages.section.processe.form',compact('icons'))
             ->with('sectionData', [
                 'title' => '',
                 'subtitle' => '',

@@ -5,7 +5,7 @@
       <img src="{{ asset('dashboard-assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
     </div>
     <div>
-      <h4 class="logo-text">Agency</h4>
+      <h4 class="logo-text">Store</h4>
     </div>
     <div class="toggle-icon ms-auto" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="bi bi-list" ></i>
     </div>
@@ -21,12 +21,12 @@
       
     </li>
     <li>
-      <a href="#" class="has-arrow">
+      <a href="javascript:;" class="has-arrow" >
         <div class="parent-icon"> Basic sections
         </div>
-        <div class=""><i class="bi bi-grid-fill"></i></div>
+        <div class="menu-title"><i class="bi bi-grid-fill"></i></div>
       </a>
-      <ul>
+      <ul >
        
         <li> <a href="{{ route('section.whatwedo.view') }}">What We Do</a>
         </li>
@@ -107,10 +107,10 @@
       </a>
     </li>
     <li>
-      <a href="#" class="has-arrow">
+      <a href="javascript:;" class="has-arrow">
         <div class="parent-icon"> profile
         </div>
-        <div class=""><i class="bi bi-gear-fill"></i></div>
+        <div class="menu-title"><i class="bi bi-gear-fill"></i></div>
       </a>
       <ul>
        

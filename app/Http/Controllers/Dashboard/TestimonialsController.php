@@ -10,7 +10,7 @@ class TestimonialsController extends Controller
 {
     public function index()
     {
-        $testimonials = testimonials::all();
+        $testimonials = testimonials::paginate(3);
         
         return view('dashboard.pages.testimonials.list')->with('testimonials', $testimonials);
     }

@@ -18,10 +18,20 @@ class AuthController extends Controller
 $request->validate([
     'email'=>['required','email'],
     'password'=>['required'],
+    'captchaconf'=>['required'],
+    'captchaval'=>[],
+    
 ]);
+if($request->post('captchaconf')!=$request->post('captchaval')){
+    return back()->withErrors([
+        'captchaconf' => 'error in captcha',
+    ])->onlyInput('captchaconf');
+}
+else{
 if (Auth::attempt([
     'email' => $request->post('email'),
     'password' => $request->post('password'),
+    
 ])) {
     $request->session()->regenerate();
 
@@ -31,7 +41,7 @@ if (Auth::attempt([
 return back()->withErrors([
     'email' => 'Your email and password doesn`t match',
 ])->onlyInput('email');
-}
+}}
 
 public function logout(Request $request)
 {

@@ -12,14 +12,7 @@
                     <!-- Navbar Close -->
                     <div class="navbar-close"><i class="far fa-times"></i></div>
                     <!-- Nav Search -->
-                    <div class="nav-search">
-                        <form>
-                            <div class="form_group">
-                                <input type="email" class="form_control" placeholder="Search Here" name="email" required>
-                                <button class="search-btn"><i class="fas fa-search"></i></button>
-                            </div>
-                        </form>
-                    </div>
+                    
                     <!-- Main Menu -->
                     <nav class="main-menu">
                         <ul>
@@ -78,9 +71,9 @@
                     </nav>
                 </div>
                
-                {{-- <div class="header-right-nav">
+                <div class="header-right-nav">
                     <ul>
-                        <li class="bar-item"><a href="#"><img src="{{ asset('assets/images/dot.png') }}" alt="dot"></a></li>
+                       
                         <li class="navbar-toggle-btn">
                             <div class="navbar-toggler">
                                 <span></span>
@@ -89,7 +82,7 @@
                             </div>
                         </li>
                     </ul>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>

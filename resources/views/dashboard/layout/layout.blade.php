@@ -17,7 +17,7 @@
   <link href="{{ asset('dashboard-assets/css/icons.css') }}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- loader-->
 	<link href="{{ asset('dashboard-assets/css/pace.min.css') }}" rel="stylesheet" />
 
@@ -130,12 +130,45 @@
   <script src="{{ asset('dashboard-assets/js/index2.js') }}"></script>
   <!--app-->
   <script src="{{ asset('dashboard-assets/js/app.js') }}"></script>
-  
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
   <script>
     //new PerfectScrollbar(".best-product")
  </script>
 
+@stack('scripts');
 
+@include('sweetalert::alert')
+@yield('js')
+<script>
+  window.addEventListener('show-delete',event =>{
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+    
+  }
+})
+  })
+ 
+</script>
+{{-- Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    ) --}}
 </body>
 
 </html>

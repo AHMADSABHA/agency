@@ -31,7 +31,7 @@
         </div>
         <!--====== End Preloader ======-->
         <!--====== offcanvas-panel ======-->
-        <div class="offcanvas-panel">
+        {{-- <div class="offcanvas-panel">
             <div class="panel-overlay"></div>
             <div class="offcanvas-panel-inner">
                 <div class="panel-logo">
@@ -64,7 +64,7 @@
                 </div>
                 <a href="#" class="panel-close"><i class="fal fa-times"></i></a>
             </div>
-        </div><!--====== offcanvas-panel ======-->
+        </div><!--====== offcanvas-panel ======--> --}}
         
         @include('website-creative-layout.header')
 

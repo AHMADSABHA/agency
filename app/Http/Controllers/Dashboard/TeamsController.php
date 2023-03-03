@@ -11,7 +11,7 @@ class TeamsController extends Controller
 {
     public function index()
     {
-        $teams = team::all();
+        $teams = team::paginate(2);
       
         return view('dashboard.pages.teams.list')->with('teams', $teams);
     }

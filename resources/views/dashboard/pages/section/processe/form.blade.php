@@ -39,7 +39,7 @@
                             <form action="{{ route('section.processe.action') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="icon">Select icon</label>
                                         <div class="custom-file">
                                             <input name="icon" type="file"
@@ -51,7 +51,7 @@
                                             <span id="exampleInputEmail1-error" class="error invalid-feedback"
                                                 style="display: block;">{{ $message }}</span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="title">Title</label>
                                         <input name="title" type="text"
@@ -73,6 +73,18 @@
                                                 class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
 
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="icon">icon</label>
+                                       <select name="icon">
+                                        @foreach($icons as $icon)
+                                            <option value="{{ $icon->id }}">
+                                                <div  class="icon" >
+                                               {{ $icon->icon_name }}
+                                            </div>
+                                            </option>
+                                        @endforeach
+                                       </select>
                                     </div>
                                 </div>
                                 

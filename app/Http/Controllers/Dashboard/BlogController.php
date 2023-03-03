@@ -10,7 +10,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = blog::all();
+        $blogs = blog::paginate(3);
         
         return view('dashboard.pages.blogs.list')->with('blogs', $blogs);
     }
